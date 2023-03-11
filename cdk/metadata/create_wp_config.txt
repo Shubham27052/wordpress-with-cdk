@@ -1,0 +1,5 @@
+#!/bin/bash -xe
+                cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
+                sed -i "s/'database_name_here'/'${DBName}'/g" /var/www/wordpress/wp-config.php
+                sed -i "s/'username_here'/'${DBUser}'/g" /var/www/wordpress/wp-config.php
+                sed -i "s/'password_here'/'${DBPassword}'/g" /var/www/wordpress/wp-config.php

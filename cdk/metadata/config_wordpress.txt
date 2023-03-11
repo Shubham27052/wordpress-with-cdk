@@ -1,0 +1,16 @@
+upstream php-handler {
+                    server unix:/var/run/php/php8.1-fpm.sock;
+                }
+                server {
+                        listen 8080;
+                        server_name ${IPAddress};
+                        root /var/www/wordpress;
+                        index index.php;
+                        location / {
+                            try_files $uri $uri/ /index.php?$args;
+                        }
+                        location ~ \.php$ {
+                            include snippets/fastcgi-php.conf;
+                            fastcgi_pass php-handler;
+                        }
+                }
