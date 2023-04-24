@@ -32,12 +32,9 @@ It can be broken down into 2 main sections:
 NGINX and Wordpress need to be installed and configured for the architecture to work. This was done using the helper scripts (cfn-init) and user data of the instance.
 
 **User Data**  
-
 User data was used to install python, aws-cfn-bootstrap and to setup cfn-init and cfn-signal
 
-**Helper Script**  
-
-This helper script was used to install all the packages and configuring the entire wordpress and nginx setup. It consistf of an ec2_setup configSet with the following 5 configs:
+**Helper Script** This helper script was used to install all the packages and configuring the entire wordpress and nginx setup. It consistf of an ec2_setup configSet with the following 5 configs:
 1. *config_cfn*: for basic setup of cfn-hup and helper scripts.
 2. *install_packages*: to install and setup wordpress, mysql and nginx. 
 3. *config_wordpress*: to create a server on port 8080 to serve the wordpress index file.
@@ -52,4 +49,4 @@ For a cleaner code, the content for the files section of each config was added i
 <br />
 <br />
 
-I have also built the same infrastructure using Cloudformation. Check it out here: 
+I have also built the same infrastructure using Cloudformation. Check it out here: [Link Text](https://github.com/Shubham27052/wordpressANDnginx-with-cloudformation)
