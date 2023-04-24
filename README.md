@@ -49,4 +49,4 @@ For a cleaner code, the content for the files section of each config was added i
 <br />
 <br />
 
-I have also built the same infrastructure using Cloudformation. Check it out here: [Link Text](https://github.com/Shubham27052/wordpressANDnginx-with-cloudformation)
+I have also built the same infrastructure using Cloudformation. [Check it out here](https://github.com/Shubham27052/wordpressANDnginx-with-cloudformation)
