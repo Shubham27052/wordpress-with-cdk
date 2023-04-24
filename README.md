@@ -14,7 +14,7 @@ The project uses Infrastructure as Code through AWS Cloud Development Kit to cre
 ## CDK Code Structure
 
 The cdk_stack.py file contains the entire template in pyhton for the wordpress and nginx setup. 
-It can be broken down into 3 main sections: 
+It can be broken down into 2 main sections: 
 - Parameters
 - Resources
 
@@ -27,17 +27,16 @@ It can be broken down into 3 main sections:
 - Unlike CloudFormation, nested stacks have no application in cdk hence each resorce was created individually.
 - All resources were created with ec2 constructs and appropritae parameters added to them.
 
-**Outputs**
-- The stack outputs the url for the sample wordpress website by getting the public IP Adress of the instance using !GetAtt.
-
 
 ## Configuring EC2 Instance
 NGINX and Wordpress need to be installed and configured for the architecture to work. This was done using the helper scripts (cfn-init) and user data of the instance.
 
-**User Data**
+**User Data**  
+
 User data was used to install python, aws-cfn-bootstrap and to setup cfn-init and cfn-signal
 
-**Helper Script**
+**Helper Script**  
+
 This helper script was used to install all the packages and configuring the entire wordpress and nginx setup. It consistf of an ec2_setup configSet with the following 5 configs:
 1. *config_cfn*: for basic setup of cfn-hup and helper scripts.
 2. *install_packages*: to install and setup wordpress, mysql and nginx. 
@@ -45,7 +44,10 @@ This helper script was used to install all the packages and configuring the enti
 4. *create_database*: to create and setup a database for the wordpress website.
 5. *config_reverse_proxy*: to create proxy server usning NGINX listening on port 80 and directing the traffic to port 8080 where NGINX serves wordpress
 <br />
-For a cleaner code, the content for the files section of each config was added into a seperate file and was later read in cdk_stack.py using the open() and read() function.
+For a cleaner code, the content for the files section of each config was added into a seperate file (checkout /wordpress-with-cdk/cdk/metadata) and was later read in cdk_stack.py using the open() and read() function.
+<br />
+<br />
+<br />
 <br />
 <br />
 <br />
