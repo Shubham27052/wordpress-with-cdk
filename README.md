@@ -11,21 +11,21 @@ The project uses Infrastructure as Code through AWS Cloud Development Kit to cre
 
 
 
-## CloudFromation Template Structure
+## CDK Code Structure
 
-The main.yaml file contains the entire template in YAML for the wordpress and nginx setup. 
+The cdk_stack.py file contains the entire template in pyhton for the wordpress and nginx setup. 
 It can be broken down into 3 main sections: 
 - Parameters
 - Resources
-- Output
 
 **Parameters**
 1. *InstanceType* input taken to choose the type of instance such as t2.micro, t2.small etc.
 2. *DBUser, DBPassword, DBName and DBRootPassword* for the MySQL database, which is required for the wordpress website to work.
+3. The CfnParameter construct is used for the same and is imported as 'parameter'.
 
 **Resources**
-- For a cleaner and more effecient template, Nested Stacks were used to create VPC, NACL and Subnet for the setup( nacl.json, subnet.json and vpc.json)
-- Other resources created include: Security Groups, Elastic IP and EC2 Instance.
+- Unlike CloudFormation, nested stacks have no application in cdk hence each resorce was created individually.
+- All resources were created with ec2 constructs and appropritae parameters added to them.
 
 **Outputs**
 - The stack outputs the url for the sample wordpress website by getting the public IP Adress of the instance using !GetAtt.
@@ -44,6 +44,10 @@ This helper script was used to install all the packages and configuring the enti
 3. *config_wordpress*: to create a server on port 8080 to serve the wordpress index file.
 4. *create_database*: to create and setup a database for the wordpress website.
 5. *config_reverse_proxy*: to create proxy server usning NGINX listening on port 80 and directing the traffic to port 8080 where NGINX serves wordpress
-
+<br />
+For a cleaner code, the content for the files section of each config was added into a seperate file and was later read in cdk_stack.py using the open() and read() function.
+<br />
+<br />
+<br />
 
 I have also built the same infrastructure using Cloudformation. Check it out here: 
